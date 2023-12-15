@@ -16,13 +16,13 @@ int main(int argc, char *argv[])
 	char *line = NULL;
 	size_t len = 0;
 	ssize_t read;
-	unsigned int line_number = 0;
+	unsigned int counter = 0;
 	stack_t *stack = NULL;
 	char *opcode;
 
 	if (argc != 2)
 	{
-		fprintf(stderr, "USAGE: monty file\n")
+		fprintf(stderr, "USAGE: monty file\n");
 		exit(EXIT_FAILURE);
 	}
 
@@ -35,12 +35,12 @@ int main(int argc, char *argv[])
 
 	while ((read = getline(&line, &len, file)) != -1)
 	{
-		line_number++;
+		counter++;
 		opcode = strtok(line, " \t\n");
 	}
 	if (opcode && opcode[0] != '#') /* Ignore comments */
 	{
-		execute_opcode(opcode, &stack, line_number)
+		execute_opcode(opcode, &stack, counter);
 	}
 	free(line);
 	fclose(file);

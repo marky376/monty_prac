@@ -12,21 +12,9 @@ void f_pall(stack_t **head, unsigned int number)
 	(void)number;
 
 
-	if (*head == NULL)
-		return;
-
-	while (current->next != NULL)
+	while (current)
 	{
+		printf("%d\n", current->n);
 		current = current->next;
-	
 	}
-
-	while (current->prev != NULL)
-	{
-		printf("%d\n", current->n);
-		current = current->prev;
-	}
-	if (current->prev == NULL)
-		printf("%d\n", current->n);
-
 }

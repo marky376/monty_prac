@@ -54,4 +54,8 @@ void push(stack_t **head, unsigned int n);
 void f_pall(stack_t **head, unsigned int number);
 void f_push(stack_t **head, unsigned int n);
 void parsing_line(char *line, stack_t **stack, unsigned int line_number);
+void f_nop(stack_t **head, unsigned int counter);
+void f_add(stack_t **head, unsigned int counter);
+void monty_error(char *msg, unsigned int counter);
+void execute_opcode(char *opcode, stack_t **head, unsigned int counter);
 #endif
