@@ -51,5 +51,7 @@ void f_pint(stack_t **head, unsigned int counter);
 void f_swap(stack_t **head, unsigned int counter);
 void f_pop(stack_t **head, unsigned int counter);
 void push(stack_t **head, unsigned int n);
-int main(int argc, char *argv[]);
+void f_pall(stack_t **head, unsigned int number);
+void f_push(stack_t **head, unsigned int n);
+void parsing_line(char *line, stack_t **stack, unsigned int line_number);
 #endif

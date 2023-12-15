@@ -1,55 +1,51 @@
-#include "monty.h"
 #define _GNU_SOURCE
 #include <stdio.h>
-#include "monty.h"
 #include <stdlib.h>
-/**
- * main - entry point of the program
- * @argc: argument count
- * @argv: argument vector
- * Retunr: always success
- */
+#include <string.h>
+#include "monty.h"
 
+/**
+ * main - Entry point for the Monty bytecode interpreter.
+ * @argc: The number of command-line arguments.
+ * @argv: The command-line arguments.
+ * Return: EXIT_SUCCESS or EXIT_FAILURE.
+ */     
 int main(int argc, char *argv[])
 {
-	size_t line_number;
 	FILE *file;
-	char *filename;
-	ssize_t read;
 	char *line = NULL;
-	char *line = NULL;
-	stack_t *stack = NULL;
 	size_t len = 0;
+	ssize_t read;
+	unsigned int line_number = 0;
+	stack_t *stack = NULL;
+	char *opcode;
 
-	line_number = 0;
 	if (argc != 2)
 	{
-		 fprintf(stderr, "USAGE: monty file");
-		 exit(EXIT_FAILURE);
+		fprintf(stderr, "USAGE: monty file\n")
+		exit(EXIT_FAILURE);
 	}
-	filename = argv[1];
-	file = fopen(filename, "r");
-	if (file == NULL)
+
+	file = fopen(argv[1], "r");
+	if (!file)
 	{
-		fprintf(stderr, "Error: Can't open file%s\n", filename);
-		exit (EXIT_FAILURE);
+		fprintf(stderr, "Error: Can't open file %s\n", argv[1]);
+		exit(EXIT_FAILURE);
 	}
+
 	while ((read = getline(&line, &len, file)) != -1)
 	{
 		line_number++;
-		parse_line(line, &stack, line_number);
-		if (line)
-		{
-			free(line);
-			line = NULL;
-		}
+		opcode = strtok(line, " \t\n");
 	}
-	if (stack)
+	if (opcode && opcode[0] != '#') /* Ignore comments */
 	{
-		free_stack(stack);
-		stack = NULL;
+		execute_opcode(opcode, &stack, line_number)
 	}
+	free(line);
 	fclose(file);
+	free_stack(stack);
 
 	exit(EXIT_SUCCESS);
 }
+
