@@ -5,6 +5,8 @@
  * @counter: line number
  * Return: NULL
 */
+bus_t bus;
+
 void f_pint(stack_t **head, unsigned int counter)
 {
 	if (*head == NULL)
