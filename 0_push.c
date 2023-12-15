@@ -1,35 +1,40 @@
 #include "monty.h"
+#include <string.h>
 
 /**
- * push - function name
- * @head: first node
- * @n: new data
+ * f_push - Pushes an element to the stack.
+ * @head: Pointer to the stack
+ * @current: Line number in the file
  */
-void f_push(stack_t **head, unsigned int n)
+
+void f_push(stack_t **head, unsigned int current)
 {
-	stack_t *new_node, *current = *head;
+	char *token = strtok(NULL, " \t\n");
+	int value;
+	stack_t *new_node;
+
+	if (!token)
+	{
+		fprintf(stderr, "L%u: usage: push integer\n", current);
+		exit(EXIT_FAILURE);
+	}
+
+	value = atoi(token);
 
 	new_node = malloc(sizeof(stack_t));
-	if (new_node == NULL)
-		return;
 
-	new_node->n = n;
-	new_node->next = NULL;
-
-	if (*head == NULL)
+	if (!new_node)
 	{
-		new_node->prev = NULL;
-		*head = new_node;
+		fprintf(stderr, "Error: mallloc failed\n");
+		exit(EXIT_FAILURE);
 	}
-	
-	else
-	{
-		while (current->next != NULL)
-		{
-			current = current->next;
-		}
+	new_node->n = value;
+	new_node->prev = NULL;
+	new_node->next = *head;
 
-		new_node->prev = current;
-		current->next = new_node;
-	}
+	if (*head)
+		(*head)->prev = new_node;
+
+	*head = new_node;
+
 }
