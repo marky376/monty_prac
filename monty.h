@@ -39,13 +39,8 @@ typedef struct instruction_s
 /**
  * struct bus_s - opcode for adding members if needed
  * @file - file pointer
- */;
-typedef struct bus_s
-{
-	FILE *file;
-	char *content;
-}bus_t;
-extern bus_t bus;
+ */
+
 void free_stack(stack_t *head);
 void f_pint(stack_t **head, unsigned int counter);
 void f_swap(stack_t **head, unsigned int counter);
