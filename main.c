@@ -9,7 +9,7 @@
  * @argc: The number of command-line arguments.
  * @argv: The command-line arguments.
  * Return: EXIT_SUCCESS or EXIT_FAILURE.
- */     
+ */
 int main(int argc, char *argv[])
 {
 	FILE *file;
@@ -48,4 +48,3 @@ int main(int argc, char *argv[])
 
 	exit(EXIT_SUCCESS);
 }
-
