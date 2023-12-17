@@ -1,4 +1,4 @@
-#include "monty.h"
+#include "MONTY_H"
 /**
  * f_swap - adds the top two elements of the stack.
  * @head: stack head
