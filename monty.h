@@ -43,15 +43,22 @@ typedef struct instruction_s
  * @file - file pointer
  */
 
+int main(int argc, char *argv[]);
 void free_stack(stack_t *head);
 void f_pint(stack_t **head, unsigned int counter);
 void f_swap(stack_t **head, unsigned int counter);
 void f_pop(stack_t **head, unsigned int counter);
 void f_pall(stack_t **head, unsigned int number);
 void f_push(stack_t **head, unsigned int current);
-void parsing_line(char *line, stack_t **stack, unsigned int line_number);
 void f_nop(stack_t **head, unsigned int counter);
 void f_add(stack_t **head, unsigned int counter);
 void monty_error(char *msg, unsigned int counter);
+void f_queue(stack_t **head, unsigned int counter);
+void addnode(stack_t **head, int n);
+int execute(char *content, stack_t **stack, unsigned int counter, FILE *file);
 void execute_opcode(char *opcode, stack_t **head, unsigned int counter);
+void f_pchar(stack_t **head, unsigned int counter);
+void free_stack(stack_t *head);
+void f_div(stack_t **head, unsigned int counter);
+void f_mod(stack_t **head, unsigned int counter);
 #endif
